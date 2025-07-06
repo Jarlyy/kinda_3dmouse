@@ -44,7 +44,7 @@ WatchJoystick:
             Send {%PanKey% down}
             IsPanActive := true
         }
-        MouseMove, % LX*PanSensitivity, % -LY*PanSensitivity, 0, R
+        MouseMove, % LX*PanSensitivity, % LY*PanSensitivity, 0, R
     }
     else if IsPanActive
     {
