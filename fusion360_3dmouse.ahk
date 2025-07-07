@@ -44,10 +44,10 @@ ProcessJoystick:
             continue
         
         ; Нормализация (-100..100)
-        ly := (values[1] - 512) / 5.12 ;lx := (values[1] - 512) / 5.12
-        lx := (values[2] - 512) / 5.12 ;ly := (values[2] - 512) / 5.12
-        ry := (values[3] - 512) / 5.12 ;rx := (values[3] - 512) / 5.12
-        rx := (values[4] - 512) / 5.12 ;ry := (values[4] - 512) / 5.12
+        ly := (values[1] - 512) / 5.12   ;lx := (values[1] - 512) / 5.12
+        lx := (values[2] - 512) / 5.12   ;ly := (values[2] - 512) / 5.12
+        ry := (values[3] - 512) / 5.12   ;rx := (values[3] - 512) / 5.12
+        rx := (values[4] - 512) / 5.12   ;ry := (values[4] - 512) / 5.12
          
         ; Жесткая мертвая зона
         ApplyDeadZone(lx, deadzone)
@@ -73,14 +73,16 @@ ProcessJoystick:
 ; Явная обработка обеих осей
 	if (rx != 0 || ry != 0) {
     	    if (!rotateActive) {
-                MouseClick, Right,,, 1, 0, D
+		Send {Shift down}
+                MouseClick, Middle,,, 1, 0, D
         	rotateActive := true
             }
     
             MouseMove, % rx*rotateSensitivity, % -ry*rotateSensitivity, 0, R
         }
         else if (rotateActive) {
-    	    MouseClick, Right,,, 1, 0, U
+    	    MouseClick, Middle,,, 1, 0, U
+	    Send {Shift up}
     	    rotateActive := false
 	}
     }
